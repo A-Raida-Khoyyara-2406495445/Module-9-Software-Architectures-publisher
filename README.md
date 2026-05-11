@@ -34,4 +34,8 @@ Menunjukkan output pada terminal subscriber saat menerima pesan dari publisher.
 Menunjukkan proses subscriber saat melakukan koneksi ke message broker.
 ![Subscriber Connection](assets/images/onesubscribermakingconnection%20-%20Copy.png)
 
+### 4. Spike pada Chart RabbitMQ
+Menunjukkan adanya lonjakan (spike) pada grafik statistik RabbitMQ saat pesan dikirimkan dan diproses.
+![RabbitMQ Spike](assets/images/spikesonthesecondchart.png)
+
 
