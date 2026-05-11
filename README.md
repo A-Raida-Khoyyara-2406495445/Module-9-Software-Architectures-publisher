@@ -20,3 +20,20 @@ Kesamaan URL tersebut menunjukkan bahwa publisher dan subscriber terhubung ke Me
 - Broker (RabbitMQ) berperan sebagai perantara yang mengatur perutean pesan ke antrean (queue) yang sesuai, dalam hal ini user_created.
 - Subscriber cukup mendaftarkan diri pada broker untuk menerima pesan tersebut.
 
+## Bukti Implementasi
+
+Berikut adalah bukti bahwa program telah berjalan dengan baik:
+
+### 1. Publisher Berjalan dengan RabbitMQ
+Menunjukkan publisher berhasil terhubung ke RabbitMQ dan mengirimkan event.
+![Running with RabbitMQ](assets/images/runningwithrabbitmq.png)
+
+### 2. Subscriber Terminal
+Menunjukkan output pada terminal subscriber saat menerima pesan dari publisher.
+![Subscriber Terminal](assets/images/subscriberterminal.png)
+
+### 3. Koneksi Subscriber
+Menunjukkan proses subscriber saat melakukan koneksi ke message broker.
+![Subscriber Connection](assets/images/onesubscribermakingconnection%20-%20Copy.png)
+
+
