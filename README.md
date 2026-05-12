@@ -38,4 +38,28 @@ Menunjukkan proses subscriber saat melakukan koneksi ke message broker.
 Menunjukkan adanya lonjakan (spike) pada grafik statistik RabbitMQ saat pesan dikirimkan dan diproses.
 ![RabbitMQ Spike](assets/images/spikesonthesecondchart.png)
 
+---
 
+# Bonus: Running on Cloud
+
+## Screenshot RabbitMQ Web UI di Cloud 
+![Running 3 subscribers on Cloud (RabbitMQ Web UI)](assets/images/bonus3s1prabbitmq.png)
+
+Pada tampilan RabbitMQ Management yang di-host pada Railway, broker berhasil berjalan dan dapat diakses melalui URL 'rabbitmq-web-ui-production-b12e.up.railway.app'. Terlihat pada bagian global counts terdapat 'Connections: 3, 'Exchanges: 10', dan 'Queues: 2', yang menunjukkan bahwa ketiga subscriber telah berhasil terkoneksi secara bersamaan ke RabbitMQ yang berjalan di cloud. Selain itu, node aktif yang digunakan adalah 'rabbit@rabbitmq', menandakan service RabbitMQ berjalan dengan baik pada environment Railway.
+
+## Screenshot Terminal Menjalankan 3 Subscriber dan 1 Publisher di Cloud
+
+![Running 3 subscribers on Cloud (Terminal)](assets/images/bonus3s1pterminal.png)
+
+Selain itu, distribusi message pada RabbitMQ cloud menunjukkan bahwa mekanisme round-robin berjalan dengan baik. Berdasarkan hasil pada masing-masing terminal subscriber, event dibagikan secara bergantian sebagai berikut:
+
+Terminal 1 menerima:
+'UserCreatedEventMessage { user_id: "3", user_name: "2406495445-Cica" }'
+Terminal 2 menerima:
+'UserCreatedEventMessage { user_id: "1", user_name: "2406495445-Amir" }'
+'UserCreatedEventMessage { user_id: "4", user_name: "2406495445-Dira" }'
+Terminal 3 menerima:
+'UserCreatedEventMessage { user_id: "2", user_name: "2406495445-Budi" }'
+'UserCreatedEventMessage { user_id: "5", user_name: "2406495445-Emir" }'
+
+Hasil tersebut menunjukkan bahwa RabbitMQ berhasil mendistribusikan event ke beberapa subscriber secara bergiliran, sehingga beban pemrosesan queue dapat terbagi lebih merata antar subscriber yang aktif.

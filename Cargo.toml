@@ -10,3 +10,4 @@ borsh = "0.9.3"
 borsh-derive = "0.9.3"
 indexmap = { version = "=1.8.2", features = ["std"] }
 tokio = { version = "1.21.2", features = ["full"] }
+dotenv = "0.15.0"

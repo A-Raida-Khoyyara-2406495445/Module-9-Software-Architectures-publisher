@@ -1,5 +1,6 @@
 use borsh::{BorshDeserialize, BorshSerialize};
 use crosstown_bus::{CrosstownBus, MessageHandler, HandleError};
+use dotenv::dotenv;
 
 #[derive(Debug, Clone, BorshDeserialize, BorshSerialize)]
 pub struct UserCreatedEventMessage {
@@ -21,9 +22,12 @@ impl MessageHandler<UserCreatedEventMessage> for UserCreatedHandler {
 }
 
 fn main() {
-    let mut p = CrosstownBus::new_queue_publisher(
-        "amqp://guest:guest@localhost:5672".to_owned()
-    ).unwrap();
+    dotenv::dotenv().ok();
+    let amqp_url = std::env::var("AMQP_URL").unwrap_or_else(|_| "amqp://guest:guest@localhost:5672".into());
+    println!("Connecting to RabbitMQ Broker...");
+    let mut p = CrosstownBus::new_queue_publisher(amqp_url).unwrap();
+    println!("Connected successfully! Publishing 5 messages...");
+    
     _ = p.publish_event("user_created".to_owned(), UserCreatedEventMessage {
         user_id: "1".to_owned(), user_name: "2406495445-Amir".to_owned() });
     _ = p.publish_event("user_created".to_owned(), UserCreatedEventMessage {
